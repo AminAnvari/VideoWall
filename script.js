@@ -1,5 +1,5 @@
-const startTime = new Date('2024-10-22T07:54:00');
-const finishTime = new Date('2024-10-22T07:54:20');
+const startTime = new Date('2024-10-22T10:15:00');
+const finishTime = new Date('2024-10-22T12:45:20');
 
 const hoursBox = document.getElementById('hours');
 const minutesBox = document.getElementById('minutes');
