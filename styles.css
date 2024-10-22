@@ -42,7 +42,7 @@ h1 {
     width: 120px;
     text-align: center;
     appearance: none;
-    transition: color 2s ease;
+    transition: color 9000s ease;
 }
 
 #message {
