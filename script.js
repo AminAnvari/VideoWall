@@ -1,38 +1,35 @@
-const startTime = new Date('2024-10-22T10:15:00');
-const finishTime = new Date('2024-10-22T12:45:20');
+const startTime = new Date('2025-06-03T16:35:00');
+const finishTime = new Date('2025-06-03T16:35:30');
 
 const hoursBox = document.getElementById('hours');
 const minutesBox = document.getElementById('minutes');
 const secondsBox = document.getElementById('seconds');
-const timeBoxes = document.querySelectorAll('.time-box');
+const messageBox = document.getElementById('status-message');
+ش
+const updateCountdown = () => {
+  const now = new Date();
+  let timeRemaining;
 
-const message = document.getElementById('message');
+  if (now < startTime) {
+    messageBox.textContent = "مسابقه هنوز شروع نشده است.";
+    timeRemaining = finishTime - startTime;
+  } else if (now > finishTime) {
+    messageBox.textContent = "مسابقه به پایان رسیده است.";
+    timeRemaining = 0;
+  } else {
+    messageBox.textContent = "مسابقه در حال برگزاری است.";
+    timeRemaining = finishTime - now;
+  }
 
-message.textContent = "";
+  const totalSeconds = Math.floor(timeRemaining / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
 
-countdownInterval = setInterval(() => {
-    const now = new Date();
-    let show = 0;
+  hoursBox.textContent = hours.toString().padStart(2, '0');
+  minutesBox.textContent = minutes.toString().padStart(2, '0');
+  secondsBox.textContent = seconds.toString().padStart(2, '0');
+};
 
-    if (now < startTime) {
-        message.textContent = "مسابقه هنوز شروع نشده است.";
-        show = finishTime - startTime;
-    } 
-    else if (now > finishTime) {
-        message.textContent = "مسابقه به پایان رسیده است.";
-        show = 0;
-    } 
-    else {
-        message.textContent = "مسابقه در حال برگزاری است.";
-        show = finishTime - now;
-    }
-
-    const hours = Math.floor((show / 1000) / 3600);
-    const minutes = Math.floor((show / 1000) / 60) % 60;
-    const seconds = Math.floor(show / 1000) % 60;
-
-    hoursBox.textContent = hours < 10 ? "0" + hours : hours;
-    minutesBox.textContent = minutes < 10 ? "0" + minutes : minutes;
-    secondsBox.textContent = seconds < 10 ? "0" + seconds : seconds;
-
-}, 1000);
+updateCountdown();
+setInterval(updateCountdown, 1000);
