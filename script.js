@@ -1,5 +1,6 @@
-const startTime = new Date('2025-06-04T02:55:50');
-const finishTime = new Date('2025-06-04T02:55:55');
+const startTime = new Date('2025-06-04T03:03:00');
+const finishTime = new Date('2025-06-04T03:03:20');
+const engage = 10;
 
 const hoursBox = document.getElementById('hours');
 const minutesBox = document.getElementById('minutes');
@@ -47,6 +48,20 @@ const updateCountdown = () => {
   for (let i = 0; i < elements.length; i++) {
     elements[i].style.color = current_color;
   }
+
+  const remainingToStart = (startTime - now) / 1000;
+  const remainingToFinish = (finishTime - now) / 1000;
+
+  const shouldPulse = (remainingToStart <= engage && remainingToStart > 0) ||
+                    (remainingToFinish <= engage && remainingToFinish > 0);
+
+  for (let i = 0; i < elements.length; i++) {
+    if (shouldPulse) {
+      elements[i].classList.add("pulsing");
+    } else {
+      elements[i].classList.remove("pulsing");
+  }
+}
 };
 
 updateCountdown();
