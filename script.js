@@ -1,18 +1,18 @@
-const startTime = new Date('2025-06-03T16:35:00');
-const finishTime = new Date('2025-06-03T16:35:30');
+const startTime = new Date('2025-06-03T18:02:00');
+const finishTime = new Date('2025-06-03T18:02:20');
 
 const hoursBox = document.getElementById('hours');
 const minutesBox = document.getElementById('minutes');
 const secondsBox = document.getElementById('seconds');
 const messageBox = document.getElementById('status-message');
-ش
+
 const updateCountdown = () => {
   const now = new Date();
   let timeRemaining;
 
   if (now < startTime) {
     messageBox.textContent = "مسابقه هنوز شروع نشده است.";
-    timeRemaining = finishTime - startTime;
+    timeRemaining = startTime - now;
   } else if (now > finishTime) {
     messageBox.textContent = "مسابقه به پایان رسیده است.";
     timeRemaining = 0;
